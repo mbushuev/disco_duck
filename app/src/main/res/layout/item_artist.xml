@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/artist_background"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_artist_iv_avatar"
+        android:layout_width="@dimen/artist_avatar_size"
+        android:layout_height="@dimen/artist_avatar_size"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/artist_avatar_description"
+        android:src="@drawable/stub" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_artist_tv_name"
+            style="@style/BaseText.ArtistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            tools:text="Artist name" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:background="@color/cardview_dark_background">
+
+            <RatingBar
+                android:id="@+id/item_artist_rb_rating"
+                style="@style/Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/RatingBar" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_artist_tv_position"
+        style="@style/BaseText.ArtistTopPositionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="100" />
+</LinearLayout>
