@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".application.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_disco_duck"
         android:label="@string/app_name"
@@ -23,6 +24,9 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="63466c604cad15affda95a4ced6ca5816c12bcb5" />
     </application>
 
 </manifest>
