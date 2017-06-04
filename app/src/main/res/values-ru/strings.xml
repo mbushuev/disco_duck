@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="artist_avatar_description">Фото артиста</string>
+    <string name="error_get_data">Ошибка загрузки данных с сервера,\nпопробуйте выполнить запрос позже</string>
+    <string name="error_load_data">Ошибка загрузки данных</string>
+    <string name="track_rating">Рейтинг:</string>
+</resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Disco Duck</string>
+    <string name="app_name" translatable="false">Disco Duck</string>
     <string name="artist_avatar_description">Artist avatar</string>
     <string name="track_rating">Rating:</string>
     <string name="error_get_data">Failed to get data from the server,\ntry querying later</string>
