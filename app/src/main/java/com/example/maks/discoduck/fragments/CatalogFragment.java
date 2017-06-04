@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -33,8 +33,8 @@ public class CatalogFragment extends BaseFragment {
     @BindView(R.id.fmt_catalog_pg_duck)
     ProgressBar progressBar;
 
-    @BindView(R.id.fmt_catalog_fl_error_container)
-    FrameLayout errorFrameLayout;
+    @BindView(R.id.fmt_catalog_ll_error_container)
+    LinearLayout errorLinearLayout;
 
     @BindView(R.id.fmt_catalog_srl_swipe_container)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -53,11 +53,13 @@ public class CatalogFragment extends BaseFragment {
             Toast.makeText(getActivity(), getString(R.string.error_load_data), Toast.LENGTH_SHORT).show();
             stopSwipeRefresh();
             setVisibleContent(true);
-            if (null != errorFrameLayout && !DataManager.INSTANCE.isDataLoaded()) {
-                errorFrameLayout.setVisibility(View.VISIBLE);
-            }
+            showError(null != errorLinearLayout && !DataManager.INSTANCE.isDataLoaded());
         }
     };
+
+    private void showError(boolean isVisible) {
+        errorLinearLayout.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    }
 
     private void stopSwipeRefresh() {
         if (null != swipeRefreshLayout && swipeRefreshLayout.isRefreshing()) {
@@ -74,16 +76,19 @@ public class CatalogFragment extends BaseFragment {
             ButterKnife.bind(this, root);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             recyclerView.setLayoutManager(linearLayoutManager);
-
             recyclerView.setAdapter(new CatalogAdapter(getContext()));
-
-            showLoader(true);
-            DataManager.INSTANCE.getData(dataListener);
-
             swipeRefreshLayout.setOnRefreshListener(() -> DataManager.INSTANCE.requestNewDataFromServer(dataListener));
+
+            updateUI();
         }
 
         return root;
+    }
+
+    private void updateUI() {
+        showError(false);
+        showLoader(true);
+        DataManager.INSTANCE.getData(dataListener);
     }
 
     private void showLoader(boolean isVisible) {
@@ -100,7 +105,7 @@ public class CatalogFragment extends BaseFragment {
 
     private void setVisibleContent(boolean visibleContent) {
         showLoader(!visibleContent);
-        errorFrameLayout.setVisibility(View.GONE);
+        showError(false);
         swipeRefreshLayout.setVisibility(visibleContent ? View.VISIBLE : View.GONE);
         recyclerView.setVisibility(visibleContent ? View.VISIBLE : View.GONE);
     }
