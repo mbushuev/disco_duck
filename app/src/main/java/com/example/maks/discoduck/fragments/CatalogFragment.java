@@ -50,10 +50,10 @@ public class CatalogFragment extends BaseFragment {
 
         @Override
         public void onError() {
-            Toast.makeText(getContext(), getString(R.string.error_load_data), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.error_load_data), Toast.LENGTH_SHORT).show();
             stopSwipeRefresh();
             setVisibleContent(true);
-            if (null != errorFrameLayout) {
+            if (null != errorFrameLayout && !DataManager.INSTANCE.isDataLoaded()) {
                 errorFrameLayout.setVisibility(View.VISIBLE);
             }
         }

@@ -109,4 +109,8 @@ public enum DataManager {
         topArtistTracks.setArtistPosition(artistPosition);
         return topArtistTracks;
     }
+
+    public boolean isDataLoaded() {
+        return null != catalogItems;
+    }
 }
